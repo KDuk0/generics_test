@@ -1,4 +1,11 @@
 use std::fmt::Display;
+use std::collections::HashMap;
+
+#[derive(Debug)]
+struct Contact {
+    name: String,
+    email: String,
+}
 
 fn generic_display<T: Display>(item: T) {
     println!("{}", item);
@@ -32,4 +39,24 @@ fn main() {
     x: x.into(),
     y
    };
+
+   let imported_contacts = vec![
+    Contact {
+        name: "Kliment".to_string(),
+        email: "kliment@gmail.com".to_string(),
+    },
+    Contact {
+        name: "Mimoza".to_string(),
+        email: "mimoza@gmail.com".to_string(),
+    }
+   ];
+   println!("{:?}", imported_contacts);
+
+   let unique_contacts: HashMap<String, Contact> = imported_contacts
+   .into_iter()
+   .map(|contact| (contact.email.clone(), contact))
+   .collect();
+
+
+println!("{:?}", unique_contacts);
 }
